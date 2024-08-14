@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/views/widget/after_option.dart';
+import 'package:frontend/views/pages/after_option.dart';
 import 'package:frontend/views/widget/section_data.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart'; // Assurez-vous d'importer GetX
@@ -26,22 +26,18 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blue[800],
+        backgroundColor: Colors.indigo[900],
         body: Column(
           children: [
             // Salutation et nom
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    "QUIZ",
-                    style: GoogleFonts.pacifico(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.right,
+                  SizedBox(
+                    height: 200,
+                    child: Image.asset('images/quiz.gif'),
                   ),
                 ],
               ),
@@ -68,7 +64,7 @@ class _QuizState extends State<Quiz> {
                             'Quelle est votre option ?',
                             style: GoogleFonts.poppins(
                               fontSize: 20,
-                              color: Colors.blue[900],
+                              color: Colors.indigo[900],
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -96,7 +92,11 @@ class _QuizState extends State<Quiz> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => AfterOption()),
+                                        builder: (context) => AfterOption(
+                                              titre: _sectionController
+                                                  .sections.value[index].lib
+                                                  .toString(),
+                                            )),
                                   );
                                 },
                                 child: Container(
