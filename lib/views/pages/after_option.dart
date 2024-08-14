@@ -16,7 +16,9 @@ class _AfterOptionState extends State<AfterOption> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+            // backgroundColor: Colors.indigo[900],
+            ),
         backgroundColor: Colors.indigo[900],
         body: Column(
           children: [

@@ -13,18 +13,18 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: couleur,
+      color: Colors.grey[100],
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(icone, size: 50, color: Colors.white),
+              Icon(icone, size: 50, color: couleur),
               const SizedBox(height: 10),
               Text(
                 titre,
-                style: const TextStyle(color: Colors.white, fontSize: 18),
+                style: TextStyle(color: couleur, fontSize: 18),
               ),
             ],
           ),

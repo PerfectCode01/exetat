@@ -36,7 +36,11 @@ class _CategoryState extends State<Category> {
                     icone: Icons.fitness_center,
                     titre: "Entrainement"),
                 CustomCard(
-                    couleur: Colors.red, icone: Icons.book, titre: 'Cours')
+                    couleur: Colors.red, icone: Icons.book, titre: 'Cours'),
+                CustomCard(
+                    couleur: Colors.orange,
+                    icone: Icons.pages,
+                    titre: 'Dissertation')
               ],
             ),
           ),
