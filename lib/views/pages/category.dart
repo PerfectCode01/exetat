@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/views/widget/card.dart';
+import 'package:frontend/views/widget/carousel_slider.dart';
 
 class Category extends StatefulWidget {
   const Category({super.key});
@@ -9,6 +10,12 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
+  List<String> categories = [
+    "Culture generale",
+    "Sciences",
+    "Options",
+    "Langues"
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,18 +33,31 @@ class _CategoryState extends State<Category> {
                   10.0, // Espacement horizontal entre les éléments
               mainAxisSpacing: 10.0, // Espacement vertical entre les éléments
 
-              children: const <Widget>[
-                CustomCard(
-                    couleur: Colors.blue,
-                    icone: Icons.quiz,
-                    titre: "Quiz Rapide"),
-                CustomCard(
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                              height: 425,
+                              width: double.infinity,
+                              child: MyCarousel(titles: categories));
+                        });
+                  },
+                  child: const CustomCard(
+                      couleur: Colors.blue,
+                      icone: Icons.quiz,
+                      titre: "Quiz Rapide"),
+                ),
+                const CustomCard(
                     couleur: Colors.green,
                     icone: Icons.fitness_center,
                     titre: "Entrainement"),
-                CustomCard(
+                const CustomCard(
                     couleur: Colors.red, icone: Icons.book, titre: 'Cours'),
-                CustomCard(
+                const CustomCard(
                     couleur: Colors.orange,
                     icone: Icons.pages,
                     titre: 'Dissertation')
