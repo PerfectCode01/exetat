@@ -4,8 +4,9 @@ import 'package:frontend/views/pages/category.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AfterOption extends StatefulWidget {
-  const AfterOption({super.key, required this.titre});
+  const AfterOption({super.key, required this.titre, required this.id});
   final String titre;
+  final int id;
 
   @override
   State<AfterOption> createState() => _AfterOptionState();
@@ -75,14 +76,18 @@ class _AfterOptionState extends State<AfterOption> {
               ),
             ),
             const SizedBox(height: 25),
-            const Expanded(
+            Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30.0),
                   topRight: Radius.circular(30.0),
                 ),
                 child: SizedBox(
-                  child: Center(child: Category()),
+                  child: Center(
+                      child: Category(
+                    options: widget.titre,
+                    idSection: widget.id,
+                  )),
                 ),
               ),
             ),

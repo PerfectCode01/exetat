@@ -61,7 +61,7 @@ class _QuizState extends State<Quiz> {
                       return ListView(
                         children: [
                           Text(
-                            'Quelle est votre option ?',
+                            'Quelle est votre section ?',
                             style: GoogleFonts.poppins(
                               fontSize: 20,
                               color: Colors.indigo[900],
@@ -93,10 +93,11 @@ class _QuizState extends State<Quiz> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => AfterOption(
-                                              titre: _sectionController
-                                                  .sections.value[index].lib
-                                                  .toString(),
-                                            )),
+                                            titre: _sectionController
+                                                .sections.value[index].lib
+                                                .toString(),
+                                            id: _sectionController
+                                                .sections.value[index].id!)),
                                   );
                                 },
                                 child: Container(
