@@ -15,8 +15,6 @@ class QuestionModel {
   int? courId;
   int? editionId;
   int? point;
-  DateTime? createdAt;
-  DateTime? updatedAt;
 
   QuestionModel({
     this.id,
@@ -24,8 +22,6 @@ class QuestionModel {
     this.courId,
     this.editionId,
     this.point,
-    this.createdAt,
-    this.updatedAt,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) => QuestionModel(
@@ -34,8 +30,6 @@ class QuestionModel {
         courId: json["cour_id"],
         editionId: json["edition_id"],
         point: json["point"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,7 +38,5 @@ class QuestionModel {
         "cour_id": courId,
         "edition_id": editionId,
         "point": point,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
       };
 }

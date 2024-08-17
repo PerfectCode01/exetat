@@ -32,8 +32,8 @@ class QuestionController extends GetxController {
         uri,
         headers: {
           'Accept': 'application/json',
-          'Authorization':
-              'Bearer ${box.read('token')}' // Utiliser 'Authorization' au lieu de 'Bearer token'
+          'Authorization': 'Bearer ${box.read('token')}',
+          'Cache-Control': 'no-cache', // Désactive la mise en cache
         },
       );
 
@@ -45,7 +45,7 @@ class QuestionController extends GetxController {
         questions.value = List<QuestionModel>.from(
             data.map((item) => QuestionModel.fromJson(item)));
 
-        print('question ${questions.value}');
+        print('Questions récupérées: ${questions.value}');
       } else {
         // Afficher le message d'erreur en cas de statut différent de 200
         print('Erreur: ${response.statusCode}');

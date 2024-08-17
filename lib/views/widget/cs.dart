@@ -122,6 +122,7 @@ class _MyCarouselState extends State<MyCarousel> {
                                 final sectionId = widget.idSection;
                                 late int categoryId;
 
+                                // Logique pour déterminer le categoryId
                                 if (category == 'Culture generale') {
                                   categoryId = 1;
                                 } else if (category == 'Sciences') {
@@ -131,15 +132,34 @@ class _MyCarouselState extends State<MyCarousel> {
                                 } else if (category == 'Langues') {
                                   categoryId = 4;
                                 }
-                                await questionController.getQuestions(
-                                    categoryId, sectionId);
 
+                                // Vider la liste des questions avant de faire la requête
+                                questionController.questions.value = [];
+
+                                // Naviguez vers la page des questions avec un FutureBuilder
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => QuestionPage(
-                                        questions:
-                                            questionController.questions.value),
+                                    builder: (context) => FutureBuilder(
+                                      future: questionController.getQuestions(
+                                          categoryId, sectionId),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        } else if (snapshot.hasError) {
+                                          return const Center(
+                                              child: Text(
+                                                  'Erreur lors du chargement des questions'));
+                                        } else {
+                                          return QuestionPage(
+                                              questions: questionController
+                                                  .questions.value);
+                                        }
+                                      },
+                                    ),
                                   ),
                                 );
                               },
