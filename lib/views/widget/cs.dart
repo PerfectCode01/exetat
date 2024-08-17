@@ -12,7 +12,7 @@ class MyCarousel extends StatefulWidget {
     required this.idSection,
   });
 
-  final List<String> categories;
+  final List categories;
   final String options;
   final int idSection;
 
@@ -105,7 +105,7 @@ class _MyCarouselState extends State<MyCarousel> {
                             // Texte
                             Center(
                               child: Text(
-                                category,
+                                category.lib,
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -120,18 +120,10 @@ class _MyCarouselState extends State<MyCarousel> {
                             ElevatedButton(
                               onPressed: () async {
                                 final sectionId = widget.idSection;
-                                late int categoryId;
+                                final categoryId = category.sectionId;
 
-                                // Logique pour déterminer le categoryId
-                                if (category == 'Culture generale') {
-                                  categoryId = 1;
-                                } else if (category == 'Sciences') {
-                                  categoryId = 2;
-                                } else if (category == 'Options') {
-                                  categoryId = 3;
-                                } else if (category == 'Langues') {
-                                  categoryId = 4;
-                                }
+                                print(sectionId);
+                                print(categoryId);
 
                                 // Vider la liste des questions avant de faire la requête
                                 questionController.questions.value = [];

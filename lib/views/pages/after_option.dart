@@ -15,6 +15,7 @@ class AfterOption extends StatefulWidget {
 class _AfterOptionState extends State<AfterOption> {
   @override
   Widget build(BuildContext context) {
+    // initialiser les categories
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
