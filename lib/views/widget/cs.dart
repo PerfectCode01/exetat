@@ -120,7 +120,8 @@ class _MyCarouselState extends State<MyCarousel> {
                             ElevatedButton(
                               onPressed: () async {
                                 final sectionId = widget.idSection;
-                                final categoryId = category.sectionId;
+                                final categoryId =
+                                    category.id; // ! je viens d'aouter ca ici
 
                                 print(sectionId);
                                 print(categoryId);
