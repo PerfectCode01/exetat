@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-// import 'package:frontend/views/widget/Carousel.dart';
 import 'package:frontend/views/widget/type_quiz.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// Assure-toi que le widget Typequiz est correctement défini ailleurs
+// import 'package:frontend/views/widget/type_quiz.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Column(
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
@@ -31,30 +33,32 @@ class _HomeState extends State<Home> {
                         children: [
                           Text(
                             'Salut Jared',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
+                            style: GoogleFonts.lobster(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             '23, Janvier 2024',
-                            style: TextStyle(color: Colors.blue),
-                          )
+                            style: TextStyle(color: Colors.blue[200]),
+                          ),
                         ],
                       ),
-                      Icon(
+                      const Icon(
                         Icons.notifications,
                         color: Colors.white,
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 25),
-                  // searchbar
+                  // Barre de recherche
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.blue[600],
-                        borderRadius: BorderRadius.circular(12)),
+                      color: Colors.blue[600],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     padding: const EdgeInsets.all(12),
                     child: const Row(
                       children: [
@@ -66,64 +70,56 @@ class _HomeState extends State<Home> {
                         Text(
                           'Search',
                           style: TextStyle(color: Colors.white),
-                        )
+                        ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 25),
-
-                  const Row(
+                  // Titre des types de tests
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Different type de test ?',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                        'Différents types de test ?',
+                        style: GoogleFonts.lobster(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.more_horiz,
                         color: Colors.white,
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 25),
-
+                  // Types de quiz
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // Column(
-                      //   children: [
-                      //     Typequiz(
-                      //       img: 'rocket',
-                      //     ),
-                      //     Text(
-                      //       'Rapide',
-                      //       style: TextStyle(color: Colors.white),
-                      //     )
-                      //   ],
-                      // ),
                       Column(
                         children: [
                           Typequiz(
                             img: 'award',
+                            // Assure-toi que le widget Typequiz est correctement défini
                           ),
                           Text(
                             'Exetat',
                             style: TextStyle(color: Colors.white),
-                          )
+                          ),
                         ],
                       ),
                       Column(
                         children: [
                           Typequiz(
                             img: 'target',
+                            // Assure-toi que le widget Typequiz est correctement défini
                           ),
                           Text(
-                            'personnalisé',
+                            'Personnalisé',
                             style: TextStyle(color: Colors.white),
-                          )
+                          ),
                         ],
                       ),
                     ],
@@ -133,50 +129,46 @@ class _HomeState extends State<Home> {
             ),
             const SizedBox(height: 25),
             Expanded(
-                child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
-              ),
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(10),
-                child: ListView(
-                  children: [
-                    Text('Decouvez les options disponibles',
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0),
+                ),
+                child: Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(10),
+                  child: ListView(
+                    children: [
+                      Text(
+                        'Découvrez les options disponibles',
                         style: GoogleFonts.lobster(
                           fontSize: 20,
                           color: Colors.blue[900],
                           fontWeight: FontWeight.bold,
-                        )),
-                    const SizedBox(height: 15),
-                    Text(
-                      'Evaluer vos connaissances, Entraînez-vous avec des tests personnalisés, suivez vos progrès et atteignez vos objectifs académiques avec confiance.',
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.poppins(
-                          fontSize: 12, color: Colors.grey[500]),
-                    ),
-                    const SizedBox(height: 25),
-                    // const Carousel(
-                    //   categories: [
-                    //     {
-                    //       "img": "bg",
-                    //       "titre": "Scientifique",
-                    //       "desc":
-                    //           "L'enseignement des sciences encourage le développement de compétences analytiques, "
-                    //     },
-                    //     {"img": "bg", "titre": "Pedagogie générale"},
-                    //     {"img": "bg", "titre": "Commerciale"},
-                    //     {"img": "bg", "titre": "Electricité"},
-                    //   ],
-                    // ),
-                  ],
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        'Évaluez vos connaissances, entraînez-vous avec des tests personnalisés, suivez vos progrès et atteignez vos objectifs académiques avec confiance.',
+                        textAlign: TextAlign.justify,
+                        style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                      const SizedBox(height: 25),
+                      // Ajoute le widget Carousel ici si nécessaire
+                    ],
+                  ),
                 ),
               ),
-            ))
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+
+

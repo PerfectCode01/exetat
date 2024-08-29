@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/views/pages/base.dart';
-// import 'package:frontend/views/pages/home.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:frontend/views/pages/base.dart';
 
 class Present1 extends StatefulWidget {
   const Present1({super.key});
@@ -15,7 +14,7 @@ class _Present1State extends State<Present1> {
     {
       "image": "hello",
       "texte":
-          'Bienvenue ! Votre inscription a été réalisée avec succès. Nous sommes ravis de vous accueillir parmis nous'
+          'Bienvenue ! Votre inscription a été réalisée avec succès. Nous sommes ravis de vous accueillir parmi nous.'
     },
     {
       "image": "objectif",
@@ -24,52 +23,94 @@ class _Present1State extends State<Present1> {
     }
   ];
   int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        color: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
-                child: Image.asset('images/${present[index]["image"]}.jpeg')),
-            SizedBox(
-                child: Text(
+            // Afficher l'image
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image.asset(
+                'images/${present[index]["image"]}.jpeg',
+                fit: BoxFit.cover,
+                height: 250,
+                width: double.infinity,
+              ),
+            ),
+            const SizedBox(height: 20),
+            // Afficher le texte
+            Text(
               present[index]["texte"],
               style: GoogleFonts.poppins(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(255, 51, 50, 50)),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
               textAlign: TextAlign.center,
-            )),
+            ),
+            // Espace pour pousser les boutons vers le bas
+            const Spacer(),
+            // Boutons de navigation
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(onPressed: () {}, child: const Text('Ignorer')),
-                SizedBox(
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (index < present.length - 1) {
-                            index++;
-                          } else {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Base()));
-                          }
-                        });
-                      },
-                      icon: const Icon(Icons.arrow_circle_right_sharp)),
-                )
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(_createPageTransition(const Base()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                  child: const Text('Ignorer',style: TextStyle(color: Colors.white)),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (index < present.length - 1) {
+                        index++;
+                      } else {
+                        Navigator.of(context).push(_createPageTransition(const Base()));
+                      }
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                  child: const Text('Suivant', style: TextStyle(color: Colors.white),),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
-    ));
+    );
+  }
+
+  // Fonction pour créer la transition personnalisée
+  PageRouteBuilder _createPageTransition(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0); // Déplacement horizontal
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+
+        var tween = Tween(begin: begin, end: end);
+        var offsetAnimation = animation.drive(tween.chain(CurveTween(curve: curve)));
+
+        return SlideTransition(position: offsetAnimation, child: child);
+      },
+    );
   }
 }

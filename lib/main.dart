@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/views/pages/base.dart';
+// import 'package:frontend/views/pages/base.dart';
+// import 'package:frontend/views/pages/register.dart';
+import 'package:frontend/views/pages/start_page.dart';
 // import 'package:frontend/views/pages/start_page.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Base(),
+      home: const StartPage(),
     );
   }
 }
